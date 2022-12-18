@@ -13,8 +13,25 @@ const gerenationCatCard = (cat) => `<div data-card_id=${cat.id} class="card mx-2
   <p class="card-text">${cat.description}</p>
   <button data-action="show" class="btn btn-primary">Show</button>
   <button data-action="delete" class="btn btn-danger">Delete</button>
+  <button data-action="edit" class="btn btn-warning">Edit</button>
 </div>
 </div>`
+
+const showModalCat = (
+  cat
+) => `<div data-card-show class="card__show">
+<div class="row g-0">
+  <div class="col-md-4">
+    <img src="${cat.image}" class="img_card_show" alt="${cat.name}">
+  </div>
+  <div class="col-md-8">
+    <div class="card-body">
+      <h3 class="card-title mt-2">${cat.name}</h3>
+      <p class="card-text text-center p-3">${cat.description}</p>
+    </div>
+  </div>
+</div>
+</div>`;
 
 $wrapper.addEventListener('click', (event) => {
   switch (event.target.dataset.action) {
@@ -25,12 +42,17 @@ $wrapper.addEventListener('click', (event) => {
       $currentCard.remove()
       break;
 
-    case 'show':
-      //TODO: onclick modal should be open (подробная информация о коте в новой модалке)
-      break;
-
-    default:
-      break;
+    case "edit":
+        
+  
+     break;
+    
+    
+    
+    case "show":
+        
+  
+     break;
   }
 })
 
@@ -47,7 +69,7 @@ document.forms.catsForm.addEventListener('submit', (event) => {
   console.log(data);
 
   api.addCat(data).then(res => res.ok && $modal.classList.add('hidden'))
-  // TODO: catch (отследить ошибку при создании кота и обрабоать, сообщить пользователю)
+  
 })
 
 $addButton.addEventListener('click', () => {
